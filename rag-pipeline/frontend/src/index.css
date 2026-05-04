@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080d1a;
+  --surface: #0f1629;
+  --surface-2: #162035;
+  --border: rgba(255,255,255,0.08);
+  --primary: #6C63FF;
+  --primary-container: #3622ca;
+  --cyan: #06b6d4;
+  --green: #10b981;
+  --orange: #f59e0b;
+  --text: #f8fafc;
+  --text-2: #94a3b8;
+  --text-3: #475569;
+  --gradient: linear-gradient(135deg, #6C63FF, #06b6d4);
+  --glow: 0 0 20px rgba(108,99,255,0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+[data-theme="light"] {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --border: rgba(0,0,0,0.1);
+  --text: #0f172a;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card-elevated {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    border: 1px solid rgba(108, 99, 255, 0.3);
+  }
+
+  .glow-right {
+    box-shadow: 1px 0 20px -5px rgba(108, 99, 255, 0.2);
+  }
+
+  .input-glow:focus-within {
+    border-bottom-color: #6C63FF;
+    box-shadow: 0 4px 15px -5px rgba(108, 99, 255, 0.3);
+  }
+
+  .scrolling-border {
+    background-image:
+      linear-gradient(90deg, #6C63FF 50%, transparent 50%),
+      linear-gradient(90deg, #6C63FF 50%, transparent 50%),
+      linear-gradient(0deg, #6C63FF 50%, transparent 50%),
+      linear-gradient(0deg, #6C63FF 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 15px 1px, 15px 1px, 1px 15px, 1px 15px;
+    background-position: left top, right bottom, left bottom, right top;
+    animation: border-dance 8s infinite linear;
+  }
+
+  @keyframes border-dance {
+    0% { background-position: left top, right bottom, left bottom, right top; }
+    100% { background-position: left 15px top, right 15px bottom, left bottom 15px, right top 15px; }
+  }
+
+  .btn-primary {
+    background: #6C63FF;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .status-pill.vectorized {
+    background: rgba(34, 197, 94, 0.1);
+    color: rgb(134, 239, 172);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .status-pill.parsing {
+    background: rgba(251, 191, 36, 0.1);
+    color: rgb(252, 211, 77);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+  }
+
+  .status-pill.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: rgb(252, 165, 165);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
+
+  .status-pill.queued {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(108, 99, 255, 0.3); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(108, 99, 255, 0.6); }
